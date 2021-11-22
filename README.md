@@ -1,5 +1,5 @@
 # devops-netology
-
+new line
 
 **/.terraform/* - #Исключаем директорию .terraform и все что в ней. Игнорируем все что до директории .terraform
 
