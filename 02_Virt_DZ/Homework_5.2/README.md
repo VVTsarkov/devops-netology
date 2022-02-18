@@ -26,31 +26,33 @@
 Установить на личный компьютер:
 
     VirtualBox
+	
 	Графический интерфейс VirtualBox
 	Версия 6.1.30 r148432 (Qt5.6.2)
 	
     Vagrant
+	
 	D:\DZ\Vagrant>vagrant --version
 	Vagrant 2.2.19
 	
 	Ansible
-	PS C:\WINDOWS\system32> wsl ansible --version
-ansible [core 2.12.2]
-  config file = /etc/ansible/ansible.cfg
-  configured module search path = ['/home/myhome/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python3/dist-packages/ansible
-  ansible collection location = /home/myhome/.ansible/collections:/usr/share/ansible/collections
-  executable location = /usr/bin/ansible
-  python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
-  jinja version = 2.10.1
-  libyaml = True
+	
+PS C:\WINDOWS\system32> wsl ansible --version
+	ansible [core 2.12.2]
+	config file = /etc/ansible/ansible.cfg
+	configured module search path = ['/home/myhome/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+	ansible python module location = /usr/lib/python3/dist-packages/ansible
+	ansible collection location = /home/myhome/.ansible/collections:/usr/share/ansible/collections
+	executable location = /usr/bin/ansible
+	python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
+	jinja version = 2.10.1
+	libyaml = True
 
 
 Задача 4 (*)
 
 Воспроизвести практическую часть лекции самостоятельно.
-
-    Создать виртуальную машину.
+Создать виртуальную машину.
 	
 MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
 $ vagrant up
@@ -95,6 +97,7 @@ Please check https://docs.ansible.com/intro_installation.html#control-machine-re
 
 
 Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды
+
 MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
 
 $ vagrant ssh
@@ -111,7 +114,6 @@ Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-91-generic x86_64)
   Usage of /:   11.8% of 30.88GB   Users logged in:       0
   Memory usage: 19%                IPv4 address for eth0: 10.0.2.15
   Swap usage:   0%                 IPv4 address for eth1: 192.168.192.11
-
 
 This system is built by the Bento project by Chef Software
 More information can be found at https://github.com/chef/bento
