@@ -38,16 +38,16 @@
 	Ansible
 	
 PS C:\WINDOWS\system32> wsl ansible --version
-	ansible [core 2.12.2]
-	config file = /etc/ansible/ansible.cfg
-	configured module search path = ['/home/myhome/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-	ansible python module location = /usr/lib/python3/dist-packages/ansible
-	ansible collection location = /home/myhome/.ansible/collections:/usr/share/ansible/collections
-	executable location = /usr/bin/ansible
-	python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
-	jinja version = 2.10.1
-	libyaml = True
 
+ansible [core 2.12.2]
+config file = /etc/ansible/ansible.cfg
+configured module search path = ['/home/myhome/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+ansible python module location = /usr/lib/python3/dist-packages/ansible
+ansible collection location = /home/myhome/.ansible/collections:/usr/share/ansible/collections
+executable location = /usr/bin/ansible
+python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
+jinja version = 2.10.1
+libyaml = True
 
 Задача 4 (*)
 
@@ -119,6 +119,7 @@ This system is built by the Bento project by Chef Software
 More information can be found at https://github.com/chef/bento
 
 vagrant@server1:~$ cat /etc/*release
+
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
