@@ -97,7 +97,7 @@
 
 Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды
 
-MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
+	MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
 
 	$ vagrant ssh
 
