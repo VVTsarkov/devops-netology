@@ -51,8 +51,10 @@ ansible [core 2.12.2]
 Воспроизвести практическую часть лекции самостоятельно.
 
     Создать виртуальную машину.
-	MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
+	
+MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
 $ vagrant up
+
 Bringing machine 'server1.netology' up with 'virtualbox' provider...
 ==> server1.netology: Importing base box 'bento/ubuntu-20.04'...
 ==> server1.netology: Matching MAC address for NAT networking...
@@ -92,10 +94,11 @@ Please check https://docs.ansible.com/intro_installation.html#control-machine-re
 `playbook` does not exist on the host: D:/dz/ansible/provision.yml
 
 
-    Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды
-
+Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды
 MyHome@DESKTOP-OTUQDA4 MINGW64 /d/dz/Vagrant
+
 $ vagrant ssh
+
 Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-91-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
