@@ -94,6 +94,7 @@ curl -X PUT "localhost:9200/ind-1" -H 'Content-Type: application/json' -d'{"sett
 curl -X PUT "localhost:9200/ind-2" -H 'Content-Type: application/json' -d'{"settings": {"index": {"number_of_shards": 2,"number_of_replicas": 1}}}'
 curl -X PUT "localhost:9200/ind-3" -H 'Content-Type: application/json' -d'{"settings": {"index": {"number_of_shards": 4,"number_of_replicas": 2}}}'
 ```
+```
 root@vagrant:/vagrant/elasticsearch# curl -X GET 'http://localhost:9200/_cat/indices?v'
 health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 green  open   ind-1 47wzVS-vTiuhtbX1DVWp0w   1   0          0            0       225b           225b
