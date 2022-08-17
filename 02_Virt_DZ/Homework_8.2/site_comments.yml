@@ -1,0 +1,62 @@
+---
+- name: Install Clickhouse # Имя Play для установки clickhous
+  hosts: clickhouse # На какие хосты из файла inventory устанавливать clickhous
+  handlers: # Обработчик события, который вызывается из `task` с помощью `notify` и только когда `task` будет считаться измененной
+    - name: Start clickhouse service # Имя обработчика
+      become: true # Повышение привилегий до root
+      ansible.builtin.service: # Вызов модуля service
+        name: clickhouse-server # Название службы
+        state: restarted # Выполнить перезапуск
+  tasks: # Список задач для выполнения play
+    - name: Install click # Имя Task'и
+      block: # Блок задач
+        - name: Get clickhouse distrib # Имя задачи загрузки дистрибутива
+          ansible.builtin.get_url: # Вызов модуля url
+            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm" # Загрузка дистрибутива с помощью модуля url и подстановки переменных из /group_vars/clickhouse/vars.yml
+            dest: "./{{ item }}-{{ clickhouse_version }}.rpm" # Удаленный абсолютный путь, куда следует скопировать файл
+            mode: 0644 # Разрешения целевого файла или каталога.
+          with_items: "{{ clickhouse_packages }}" # Выполнение по элементам, находящимся в /group_vars/clickhouse/vars.yml
+      rescue: # блок для обработки ошибки в предыдущем шаге
+        - name: Get clickhouse distrib x86_64 # Имя задачи загрузки дистрибутива
+          ansible.builtin.get_url: # Вызов модуля url
+            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm" # Загрузка дистрибутива с помощью модуля url и подстановки переменных из /group_vars/clickhouse/vars.yml
+            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm" # Удаленный абсолютный путь, куда следует скопировать файл
+            mode: 0644 # Разрешения целевого файла или каталога.
+    - name: Install clickhouse packages # Имя задачи для установки пакетов clickhouse
+      become: true # Повышение привилегий до root
+      ansible.builtin.yum: # Вызов модуля yum для установки
+        name: # Список устанавливаемых пакетов с подстановкой переменных
+          - clickhouse-common-static-{{ clickhouse_version }}.rpm
+          - clickhouse-client-{{ clickhouse_version }}.rpm
+          - clickhouse-server-{{ clickhouse_version }}.rpm
+      notify: Start clickhouse service # Вызов handler
+    - name: Flush handlers # Принудительное/обязательное выполенние handler
+      ansible.builtin.meta: flush_handlers # Вызов модуля meta
+    - name: Wait for port 9000 to become open on the host, dont start checking for 25 seconds # Имя задачи для ожидания поднятия порта
+      ansible.builtin.wait_for: # Вызов модуля wait_for
+        port: 9000 # Порт
+        delay: 25 # Задержка
+    - name: Create database # Имя задачи
+      ansible.builtin.command: "clickhouse-client -q 'create database logs;'" # Вызов модуля command и выполнение bash команды
+      register: create_db # запись результата в перменную create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82 # если rc не равно 0 (успешное выполнение) и если не равно 82 (таблица уже существует) - то задача будет завершена с ошибкой
+      changed_when: create_db.rc == 0 # если 0, то задача завершена со статусом changed
+- name: Install Vector # Имя Play для установки vector
+  hosts: vector # На какие хосты из файла inventory устанавливать vector
+  handlers: # Обработчик события, который вызывается из `task` с помощью `notify` и только когда `task` будет считаться измененной
+    - name: Start vector service # Имя обработчика
+      become: true # Повышение привилегий до root
+      ansible.builtin.service: # Вызов модуля service
+        name: vector # Название службы
+        state: restarted # Выполнить перезапуск
+  tasks: # Список задач для выполнения play
+    - name: Download distrib # Имя Task'и
+      ansible.builtin.get_url: # Вызов модуля url
+        url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm" # Загрузка дистрибутива с помощью модуля url и подстановки переменных из /group_vars/vector/vars.yml
+        dest: "./vector-{{ vector_version }}.rpm" # Удаленный абсолютный путь, куда следует скопировать файл
+        mode: 0644 # Разрешения целевого файла или каталога.
+    - name: Install Vector # Имя задачи для установки vector
+      become: true # Повышение привилегий до root
+      ansible.builtin.yum: # Вызов модуля yum для установки
+        name: "vector-{{ vector_version }}.rpm" # Установка пакета с подстановкой переменных
+      notify: Start vector service # Вызов handler
