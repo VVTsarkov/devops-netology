@@ -26,7 +26,6 @@ Starting galaxy role install process
 - clickhouse (1.11.0) was installed successfully
 
 	```
-
     Создать новый каталог с ролью при помощи ansible-galaxy role init vector-role.
 
     На основе tasks из старого playbook заполните новую role. Разнесите переменные между vars и default.
@@ -41,6 +40,11 @@ Starting galaxy role install process
 
     Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения roles с tasks.
 
-    Выложите playbook в репозиторий.
 
-    В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
+   1. Репозиторий с ролью от Clickhouse ![Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/clickhouse)
+   2. Репозиторий с ролью от Lighthouse ![Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/lighthouse-role)
+   3. Репозиторий с ролью от Vector ![Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/vector-role)
+
+Playbook состоит из запуска только ролей.
+Все переменные, которые можно изменить описаны непосредственно в ролях.
+Скачивание ролей с помощью ansible-galaxy проходит успешно.
