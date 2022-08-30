@@ -1,0 +1,36 @@
+---
+# tasks file for lighthouse-role
+- name: Install Nginx Web Server
+  ansible.builtin.yum:
+    name: nginx
+    state: latest
+    update_cache: true
+  notify:
+    - Nginx systemd
+
+- name: Disable default site
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Replace default site
+  ansible.builtin.template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/conf.d/
+    mode: 0644
+  notify:
+    - Nginx restart service
+
+- name: Create lighthouse directory
+  ansible.builtin.file:
+    path: "{{ lighthouse_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Download and Install lighthouse
+  ansible.builtin.git:
+    repo: "{{ lighthouse_url }}"
+    version: master
+    dest: "{{ lighthouse_dir }}"
+  notify:
+    - Nginx restart service
