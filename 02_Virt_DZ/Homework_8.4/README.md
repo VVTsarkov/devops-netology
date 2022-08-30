@@ -41,9 +41,9 @@ Starting galaxy role install process
     Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения roles с tasks.
 
 
-   1. Репозиторий с ролью от Clickhouse [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/clickhouse)
-   2. Репозиторий с ролью от Lighthouse [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/lighthouse-role)
-   3. Репозиторий с ролью от Vector [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/vector-role)
+1. Репозиторий с ролью от Clickhouse [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/clickhouse)
+2. Репозиторий с ролью от Lighthouse [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/lighthouse-role)
+3. Репозиторий с ролью от Vector [Ссылка на репозиторий](https://github.com/VVTsarkov/devops-netology/tree/main/02_Virt_DZ/Homework_8.4/old_playbook/roles/vector-role)
 
 Playbook состоит из запуска только ролей.
 Все переменные, которые можно изменить описаны непосредственно в ролях.
