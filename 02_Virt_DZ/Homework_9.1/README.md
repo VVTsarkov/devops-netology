@@ -29,7 +29,7 @@
     On test -> On develop, Done
     Done -> Closed, Open
 
-![Workflow для остальных задач:](Pictures/All Other.PNG)
+![Workflow для остальных задач:](Pictures/All_Other.PNG)
 
 Создать задачу с типом bug, попытаться провести его по всему workflow до Done. Создать задачу с типом epic, к ней привязать несколько задач с типом task, провести их по всему workflow до Done. При проведении обеих задач по статусам использовать kanban. Вернуть задачи в статус Open. Перейти в scrum, запланировать новый спринт, состоящий из задач эпика и одного бага, стартовать спринт, провести задачи до состояния Closed. Закрыть спринт.
 
@@ -37,6 +37,6 @@
 
 # Дополнительно скриншоты о успешно выполненных действиях
 
-![Kanban Test:](Pictures/Kanban Test.PNG)
+![Kanban Test:](Pictures/Kanban_Test.PNG)
 
-![Scrum Test:](Pictures/Scrum Test.PNG)
+![Scrum Test:](Pictures/Scrum_Test.PNG)
