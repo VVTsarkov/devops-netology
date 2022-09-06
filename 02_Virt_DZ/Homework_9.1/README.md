@@ -35,6 +35,9 @@
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
+[workflow](Pictures/Open.xml)
+[workflow_bug](Pictures/Bug.xml)
+
 # Дополнительно скриншоты о успешно выполненных действиях
 
 ![Kanban Test:](Pictures/Kanban_Test.PNG)
