@@ -1,0 +1,37 @@
+image: docker:latest
+services:
+    - docker:dind
+stages:
+  - build
+  - test
+  - deploy
+
+docker-build:
+  stage: build
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t $CI_REGISTRY/vvtsarkov/netology-gitlab/python-api:latest .
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - Dockerfile
+
+docker-test:
+  stage: test
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t $CI_REGISTRY/vvtsarkov/netology-gitlab/python-api:latest .
+    - docker run -p 5290:5290 -d --name python-api $CI_REGISTRY/vvtsarkov/netology-gitlab/python-api:latest
+    - sleep 50
+    - curl localhost:5290/get_info
+
+docker-deploy:
+  stage: deploy
+  needs:
+    - docker-test
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t $CI_REGISTRY/vvtsarkov/netology-gitlab/python-api:latest . 
+    - docker push $CI_REGISTRY/vvtsarkov/netology-gitlab/python-api:latest
+  only:
+    - main
