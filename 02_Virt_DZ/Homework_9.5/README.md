@@ -128,9 +128,9 @@ if __name__ == '__main__':
      app.run(host='0.0.0.0', port='5290')
 ```
   - Сборка прошла успешно
-![merge](picture/merge.PNG)
+![img](picture/merge.PNG)
   - Проверка в job тоже прошла успешно
-![job](picture/job.PNG)
+![img](picture/job.PNG)
 
 Tester
 
