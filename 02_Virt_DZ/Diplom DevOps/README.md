@@ -72,7 +72,7 @@ resource "yandex_iam_service_account" "sa" {
 
 // Назначение роли сервисному аккаунту
 resource "yandex_resourcemanager_folder_iam_member" "sa-editor" {
-  folder_id = "b1gbolqget39qpnc13fg"
+  folder_id = ""
   role      = "storage.editor"
   member    = "serviceAccount:${yandex_iam_service_account.sa.id}"
 }
@@ -128,7 +128,7 @@ for this configuration.
 ```
 ![img](picture/3.PNG)
 
-# Домен был делегирован под управление ns1.yandexcloud.net и ns2.yandexcloud.net.
+- **Домен был делегирован под управление ns1.yandexcloud.net и ns2.yandexcloud.net**
 
     Создайте VPC с подсетями в разных зонах доступности.
     Убедитесь, что теперь вы можете выполнить команды terraform destroy и terraform apply без дополнительных ручных действий.
