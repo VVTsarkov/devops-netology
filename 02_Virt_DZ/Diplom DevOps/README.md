@@ -1,6 +1,6 @@
 # Царьков В.В. 
 # Дипломное задание по курсу «DevOps-инженер»
-##Дипломный практикум в YandexCloud
+## Дипломный практикум в YandexCloud
 ```
 Цели:
     Зарегистрировать доменное имя (любое на ваш выбор в любой доменной зоне).
@@ -12,9 +12,9 @@
     Настроить CI/CD для автоматического развёртывания приложения.
     Настроить мониторинг инфраструктуры с помощью стека: Prometheus, Alert Manager и Grafana.
 ```
-#Этапы выполнения:
+# Этапы выполнения:
 
-##1. Регистрация доменного имени
+## Регистрация доменного имени
 
 Подойдет любое доменное имя на ваш выбор в любой доменной зоне.
 ПРИМЕЧАНИЕ: Далее в качестве примера используется домен you.domain замените его вашим доменом.
@@ -32,7 +32,7 @@
 ![img](picture/RuCenter.png)
 [Проверка](https://www.nic.ru/whois/?ysclid=l8a98nod1579913379&searchWord=vvtsarkov.ru)
 
-##2. Создание инфраструктуры
+## Создание инфраструктуры
 
 Для начала необходимо подготовить инфраструктуру в YC при помощи Terraform.
 
@@ -45,7 +45,7 @@
 а. Рекомендуемый вариант: Terraform Cloud
 б. Альтернативный вариант: S3 bucket в созданном YC аккаунте.
 
-Был выбран вариант: `S3 bucket` в  YC аккаунте.
+- **Был выбран вариант: `S3 bucket` в  YC аккаунте**
 ```
 terraform {
   required_providers {
@@ -110,7 +110,8 @@ commands will detect it and remind you to do so if necessary.
 а. Рекомендуемый вариант: создайте два workspace: stage и prod. В случае выбора этого варианта все последующие шаги должны учитывать факт существования нескольких workspace.
 б. Альтернативный вариант: используйте один workspace, назвав его stage. Пожалуйста, не используйте workspace, создаваемый Terraform-ом по-умолчанию (default).
 
-Настроили `workspaces`, назвав его *stage*.\
+- **Настроили `workspaces`, назвав его *stage*.\**
+
 ```
 [root@localhost terraform]# terraform workspace new stage
 Created and switched to workspace "stage"!
@@ -204,7 +205,7 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
 ![img](picture/6.png)
 ![img](picture/7.png)
 
-##3. Установка Nginx и LetsEncrypt
+## Установка Nginx и LetsEncrypt
 
 Необходимо разработать Ansible роль для установки Nginx и LetsEncrypt.
 Для получения LetsEncrypt сертификатов во время тестов своего кода пользуйтесь тестовыми сертификатами, так как количество запросов к боевым серверам LetsEncrypt лимитировано.
@@ -237,7 +238,7 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
  ![img](picture/11.png)
  ![img](picture/12.png)
  
-##4. Установка кластера MySQL
+## Установка кластера MySQL
 
 Необходимо разработать Ansible роль для установки кластера MySQL.
 
@@ -255,7 +256,7 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
     В кластере автоматически создаётся база данных c именем wordpress.
     В кластере автоматически создаётся пользователь wordpress с полными правами на базу wordpress и паролем wordpress.
 
-##5. Установка WordPress
+## Установка WordPress
 
 Необходимо разработать Ansible роль для установки WordPress.
 
@@ -279,7 +280,7 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
     На сервере you.domain отредактирован upstream для выше указанного URL и он смотрит на виртуальную машину на которой установлен WordPress.
     В браузере можно открыть URL https://www.you.domain и увидеть главную страницу WordPress.
 
-##6. Установка Gitlab CE и Gitlab Runner
+## Установка Gitlab CE и Gitlab Runner
 ![img](picture/22.png)
 ![img](picture/23.png)
 
@@ -326,7 +327,7 @@ CI/CD для деплоя темы в WordPress
  - **Измененная тема на нашем сайте Wordpress**
 ![img](picture/26.png)
 
-##7. Установка Prometheus, Alert Manager, Node Exporter и Grafana
+## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
 Необходимо разработать Ansible роль для установки Prometheus, Alert Manager и Grafana.
 Рекомендации:
