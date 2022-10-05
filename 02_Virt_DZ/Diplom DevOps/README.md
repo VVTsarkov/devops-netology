@@ -286,6 +286,10 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
 
 ## Установка Gitlab CE и Gitlab Runner
 
+```
+Столкнулся с проблемой совместимости Gitlab-CE с последней версией Ubuntu/Jammy 22.04, пришлось перейти на более старую версию 20.04
+```
+
 ![img](picture/22.PNG)
 
 ![img](picture/23.PNG)
@@ -356,15 +360,10 @@ CI/CD для деплоя темы в WordPress
     • https://grafana.you.domain (Grafana)
     • https://prometheus.you.domain (Prometheus)
     • https://alertmanager.you.domain (Alert Manager)
-    На сервере you.domain отредактированы upstreams для выше указанных URL и они смотрят на виртуальную машину на которой установлены Prometheus, Alert Manager и Grafana.
-    На всех серверах установлен Node Exporter и его метрики доступны Prometheus.
-    У Alert Manager есть необходимый набор правил для создания алертов.
-    В Grafana есть дашборд отображающий метрики из Node Exporter по всем серверам.
-    В Grafana есть дашборд отображающий метрики из MySQL (*).
-    В Grafana есть дашборд отображающий метрики из WordPress (*).
 
 ![img](picture/20.PNG)
 ![img](picture/21.PNG)
 ![img](picture/17.PNG)
 ![img](picture/18.PNG)
 ![img](picture/19.PNG)
+
