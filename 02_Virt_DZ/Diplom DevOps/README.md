@@ -28,9 +28,10 @@
 Ожидаемые результаты:
     У вас есть доступ к личному кабинету на сайте регистратора.
     Вы зарезистрировали домен и можете им управлять (редактировать dns записи в рамках этого домена).
+	
 - **Был зарегистрирован домен vvtsarkov.ru на RuCenter**
 
-![img](picture/RuCenter.PNG)
+![Домен](picture/1.PNG)
 
 [Проверка](https://www.nic.ru/whois/?ysclid=l8a98nod1579913379&searchWord=vvtsarkov.ru)
 
@@ -59,9 +60,9 @@ terraform {
 }
 
 provider "yandex" {
-  token     = "AQAAAAAAtl88AATuwThx5JxpbkTaorwBYZxyaDc"
-  cloud_id  = "b1g22ui73eo1b5lr8fs5"
-  folder_id = "b1gbolqget39qpnc13fg"
+  token     = ""
+  cloud_id  = ""
+  folder_id = ""
   zone      = "ru-central1-a"
 }
 
