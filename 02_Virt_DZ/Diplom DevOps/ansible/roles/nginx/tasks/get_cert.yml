@@ -1,0 +1,14 @@
+---
+- name: Check if certificate already exists
+  ansible.builtin.stat:
+    path: "/etc/letsencrypt/live/{{ virtual_domain }}/cert.pem"
+  register: letsencrypt_cert
+
+- name: Generate new certificate
+  ansible.builtin.shell: >
+    certbot certonly --nginx --test-cert --email '{{ letsencrypt_email }}'
+    --agree-tos --no-eff-email -d '{{ virtual_domain }}'
+    -d 'www.{{ virtual_domain }}' -d 'gitlab.{{ virtual_domain }}'
+    -d 'grafana.{{ virtual_domain }}' -d 'prometheus.{{ virtual_domain }}'
+    -d 'alertmanager.{{ virtual_domain }}'
+  when: not letsencrypt_cert.stat.exists

@@ -1,0 +1,91 @@
+---
+- hosts: Prephost
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - preparehost
+
+- hosts: nginx
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - nginx
+    - nodeexporter
+  vars:
+    nginx_user: www-data
+
+- hosts: database
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - mysql
+    - nodeexporter
+
+- hosts: wordpress
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - wordpress
+    - nodeexporter
+
+- hosts: gitlab
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - gitlab
+
+- hosts: runner
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - runner
+    - nodeexporter
+
+- hosts: mon
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ubuntu
+  roles:
+    - monitoring
+    - nodeexporter

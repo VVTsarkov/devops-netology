@@ -1,0 +1,9 @@
+- name: Install letsencrypt
+  ansible.builtin.apt:
+    name: letsencrypt
+    state: latest
+
+- name: Install python3-certbot-nginx
+  ansible.builtin.package:
+    name: "python3-certbot-nginx"
+    state: present

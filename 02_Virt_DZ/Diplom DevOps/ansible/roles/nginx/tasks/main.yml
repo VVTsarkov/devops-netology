@@ -1,0 +1,52 @@
+- name: Install Nginx Web Server
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+    update_cache: true
+  notify:
+    - Nginx systemd
+
+- name: Create Iptables NAT
+  ansible.builtin.iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: eth0
+    jump: MASQUERADE
+
+- name: Enable IPv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: true
+    state: present
+    reload: true
+
+- name: Install IPtables-persistent
+  ansible.builtin.apt:
+    name: iptables-persistent
+    state: present
+
+- name: Install Letsencrypt and certbot
+  ansible.builtin.include_tasks: lets_certbot.yml
+
+- name: Generate a self-signed SSL certificate
+  ansible.builtin.include_tasks: get_cert.yml
+
+- name: Disable default site
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Import configuration nginx
+  ansible.builtin.template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+
+- name: Apply Nginx template
+  ansible.builtin.template:
+    src: templates/nginx_vhosts.conf
+    dest: /etc/nginx/conf.d/{{ virtual_domain }}.conf
+    mode: 0644
+  notify:
+    - Nginx restart service

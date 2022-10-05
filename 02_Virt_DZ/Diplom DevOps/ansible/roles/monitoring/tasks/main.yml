@@ -1,0 +1,6 @@
+- name: Install and configure prometheus
+  ansible.builtin.import_tasks: prometheus.yml
+- name: Install and configure Grafana
+  ansible.builtin.import_tasks: grafana.yml
+- name: Install and configure Alertmanager
+  ansible.builtin.import_tasks: alertmanager.yml

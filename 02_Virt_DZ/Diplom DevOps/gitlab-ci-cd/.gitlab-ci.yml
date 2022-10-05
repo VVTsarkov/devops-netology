@@ -1,0 +1,22 @@
+stages:
+  - deploy-stage
+
+variables:
+  WORDPRESS_SITE_DIR: /var/www/vvtsarkov.ru
+  WORDPRESS_THEME_NAME: mesmerize
+
+deploy-stage:
+  stage: deploy-stage
+  script: 
+    - chmod og= $STAGE_ID_RSA
+    # Загружаем новую тему на наш сервер
+    - ssh -i $STAGE_ID_RSA -o StrictHostKeyChecking=no $STAGE_SERVER_USER@$STAGE_SERVER_IP sudo chown ubuntu $WORDPRESS_SITE_DIR -R;
+    - scp -r -i $STAGE_ID_RSA ./wp-content/themes/$WORDPRESS_THEME_NAME $STAGE_SERVER_USER@$STAGE_SERVER_IP:$WORDPRESS_SITE_DIR/wp-content/themes
+    # Включаем нашу новую тему
+    - ssh -i $STAGE_ID_RSA -o StrictHostKeyChecking=no $STAGE_SERVER_USER@$STAGE_SERVER_IP "
+        cd $WORDPRESS_SITE_DIR && 
+        wp theme activate $WORDPRESS_THEME_NAME"
+    # Устанавливаем права на каталоги и файлы
+    - ssh -i $STAGE_ID_RSA -o StrictHostKeyChecking=no $STAGE_SERVER_USER@$STAGE_SERVER_IP "
+        sudo chown -R www-data:www-data $WORDPRESS_SITE_DIR || true"
+

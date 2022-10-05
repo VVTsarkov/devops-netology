@@ -1,0 +1,57 @@
+---
+- name: restart prometheus
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    name: prometheus
+    state: restarted
+
+- name: reload prometheus
+  become: true
+  ansible.builtin.systemd:
+    name: prometheus
+    state: reloaded
+
+- name: restart alertmanager
+  ansible.builtin.service:
+    name: alertmanager
+    state: restarted
+
+- name: reload alertmanager
+  ansible.builtin.service:
+    name: alertmanager
+    state: reloaded
+
+- name: restart alertmanager
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    name: alertmanager
+    state: restarted
+
+- name: restart grafana
+  become: true
+  ansible.builtin.service:
+    name: grafana-server
+    state: restarted
+
+- name: Set privileges on provisioned dashboards
+  become: true
+  ansible.builtin.file:
+    path: "{{ grafana_data_dir }}/dashboards"
+    recurse: true
+    owner: grafana
+    group: grafana
+    mode: 0640
+  listen: "provisioned dashboards changed"
+
+- name: Set privileges on provisioned dashboards directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ grafana_data_dir }}/dashboards"
+    state: directory
+    recurse: false
+    mode: 0755
+  listen: "provisioned dashboards changed"
