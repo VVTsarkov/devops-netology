@@ -29,7 +29,9 @@
     У вас есть доступ к личному кабинету на сайте регистратора.
     Вы зарезистрировали домен и можете им управлять (редактировать dns записи в рамках этого домена).
 - **Был зарегистрирован домен vvtsarkov.ru на RuCenter**
-![img](picture/RuCenter.png)
+
+![img](picture/RuCenter.PNG)
+
 [Проверка](https://www.nic.ru/whois/?ysclid=l8a98nod1579913379&searchWord=vvtsarkov.ru)
 
 ## Создание инфраструктуры
@@ -123,7 +125,7 @@ for this configuration.
   default
 * stage
 ```
-![img](picture/3.png)
+![img](picture/3.PNG)
 
 # Домен был делегирован под управление ns1.yandexcloud.net и ns2.yandexcloud.net.
 
@@ -199,11 +201,11 @@ yandex_dns_recordset.t3: Creation complete after 2s [id=dns72easb9tpt581guka/git
 
 Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
 ```
-![img](picture/2.png)
-![img](picture/5.png)
-![img](picture/5.1.png)
-![img](picture/6.png)
-![img](picture/7.png)
+![img](picture/2.PNG)
+![img](picture/5.PNG)
+![img](picture/5.1.PNG)
+![img](picture/6.PNG)
+![img](picture/7.PNG)
 
 ## Установка Nginx и LetsEncrypt
 
@@ -231,12 +233,12 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
     Настроены все upstream для выше указанных URL, куда они сейчас ведут на этом шаге не важно, позже вы их отредактируете и укажите верные значения.
     В браузере можно открыть любой из этих URL и увидеть ответ сервера (502 Bad Gateway). На текущем этапе выполнение задания это нормально!
 	
- ![img](picture/13.png)
- ![img](picture/10.png)
- ![img](picture/9.png)
- ![img](picture/8.png)
- ![img](picture/11.png)
- ![img](picture/12.png)
+ ![img](picture/13.PNG)
+ ![img](picture/10.PNG)
+ ![img](picture/9.PNG)
+ ![img](picture/8.PNG)
+ ![img](picture/11.PNG)
+ ![img](picture/12.PNG)
  
 ## Установка кластера MySQL
 
@@ -275,14 +277,17 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
     В вашей доменной зоне настроена A-запись на внешний адрес reverse proxy:
 
     https://www.you.domain (WordPress)
-![img](picture/16.png)
+	
+![img](picture/16.PNG)
 
     На сервере you.domain отредактирован upstream для выше указанного URL и он смотрит на виртуальную машину на которой установлен WordPress.
     В браузере можно открыть URL https://www.you.domain и увидеть главную страницу WordPress.
 
 ## Установка Gitlab CE и Gitlab Runner
-![img](picture/22.png)
-![img](picture/23.png)
+
+![img](picture/22.PNG)
+
+![img](picture/23.PNG)
 
 Необходимо настроить CI/CD систему для автоматического развертывания приложения при изменении кода.
 
@@ -301,7 +306,9 @@ Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
     В вашей доменной зоне настроена A-запись на внешний адрес reverse proxy:
 
     https://gitlab.you.domain (Gitlab)
-![img](picture/28.png)
+	
+![img](picture/28.PNG)
+
 ```
 CI/CD для деплоя темы в WordPress
 	Создадим на целевом сервере ssh ключи для пользователя `ubuntu`.
@@ -313,7 +320,9 @@ CI/CD для деплоя темы в WordPress
 	- **`STAGE_SERVER_USER`** — содержит пользователя, используемого при открытии сеанса SSH.
 	- **`STAGE_ID_RSA`** – содержит закрытый ключ SSH, используемый во время сеанса SSH.\
 ```
-![img](picture/24.png)
+
+![img](picture/24.PNG)
+
 ```
 Подготовка GitLab к автоматическому развертыванию
 	Создаем новый публичный репозиторий для нашего проекта.
@@ -321,11 +330,14 @@ CI/CD для деплоя темы в WordPress
 	Подготавливаем `Runner` для работы с нашем проектом.
 ```
 После завершения настройки, GitLab CI/CD автоматически развернет новую тему для WordPress.
+
  - **Успешно выполненный `pipeline`**
-![img](picture/27.png)
+ 
+![img](picture/27.PNG)
 
  - **Измененная тема на нашем сайте Wordpress**
-![img](picture/26.png)
+ 
+![img](picture/26.PNG)
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
@@ -350,8 +362,8 @@ CI/CD для деплоя темы в WordPress
     В Grafana есть дашборд отображающий метрики из MySQL (*).
     В Grafana есть дашборд отображающий метрики из WordPress (*).
 
-![img](picture/20.png)
-![img](picture/21.png)
-![img](picture/17.png)
-![img](picture/18.png)
-![img](picture/19.png)
+![img](picture/20.PNG)
+![img](picture/21.PNG)
+![img](picture/17.PNG)
+![img](picture/18.PNG)
+![img](picture/19.PNG)
